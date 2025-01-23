@@ -1,5 +1,9 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { 
+  BrowserRouter as Router, 
+  Routes, 
+  Route
+} from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import theme from './theme';
@@ -17,14 +21,18 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Router>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/shop" element={<Shop />} />
-          <Route path="/product/:id" element={<ProductDetails />} />
-        </Routes>
-        <Footer />
+      <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+          <Navbar />
+          <main style={{ flex: 1 }}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/shop" element={<Shop />} />
+              <Route path="/product/:id" element={<ProductDetails />} />
+            </Routes>
+          </main>
+          <Footer />
+        </div>
       </Router>
     </ThemeProvider>
   );
